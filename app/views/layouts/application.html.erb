@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BearPublishing</title>
+    <title>Bear Publishing</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,19 @@
   </head>
 
   <body>
+    <div class="nav">
+      <a href="/"><h1>🐻 Bear Publishing</h1></a>
+      <% if @current_user %>
+        <div style="padding-top:20px;">
+          <%= @current_user.name %> @ <%= @current_user.organization.name %> |
+          <%= link_to 'Order History', orders_path %> |
+          <%= link_to 'logout', auth.sign_out_path, method: :delete %>
+        </div>
+      <% end %>
+    </div>
+    <% if @current_user %>
+      <%= link_to 'Books', books_path %> | <%= link_to 'Authors', authors_path %> | <%= link_to 'Cart', current_orders_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

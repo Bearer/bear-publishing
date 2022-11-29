@@ -6,6 +6,7 @@ class CreateBooks < ActiveRecord::Migration[7.0]
       t.date :published_at
       t.text :description
       t.integer :pages
+      t.decimal :price, precision: 5, scale: 2
 
       t.timestamps
     end

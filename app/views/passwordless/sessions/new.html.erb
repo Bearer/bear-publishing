@@ -1,0 +1,8 @@
+<h1>Please Sign In</h1>
+<p>Please enter the email you provided Bear Publishing when provisioning your account.</p>
+
+<%= form_with model: @session, url: send(Passwordless.mounted_as).sign_in_path, data: {turbo: false} do |f| %>
+  <% email_field_name = :"passwordless[#{@email_field}]" %>
+  <%= text_field_tag email_field_name, params.fetch(email_field_name, User.last.email) %>
+  <%= f.submit I18n.t('passwordless.sessions.new.submit') %>
+<% end %>

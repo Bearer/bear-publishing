@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Orders</h1>
+
+<div id="orders">
+  <table>
+  <thead>
+  <tr>
+    <th>Order number</th>
+    <th>Placed</th>
+    <th>Authorized by</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @orders.each do |order| %>
+    <tr>
+      <td>#<%= order.id %></td>
+      <td><%= order.placed_at %></td>
+      <td><%= order.user&.name %></td>
+      <td>$<%= order.total_price %></td>
+      <td><%= link_to "Show", order %></td>
+    <tr>
+  <% end %>
+  </tbody>
+  </table>
+</div>

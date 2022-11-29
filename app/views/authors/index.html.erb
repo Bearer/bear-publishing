@@ -1,14 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Authors</h1>
+<h1>Our Authors</h1>
 
-<div id="authors">
+<div id="authors" class="grid-container">
   <% @authors.each do |author| %>
     <%= render author %>
-    <p>
-      <%= link_to "Show this author", author %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New author", new_author_path %>

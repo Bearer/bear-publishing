@@ -1,10 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @author %>
+<h1>Published works of <%= @author.name %></h2>
+
+<div id="books" class="grid-container">
+  <% @author.books.each do |book| %>
+    <%= render book %>
+  <% end %>
+</div>
 
 <div>
-  <%= link_to "Edit this author", edit_author_path(@author) %> |
   <%= link_to "Back to authors", authors_path %>
-
-  <%= button_to "Destroy this author", @author, method: :delete %>
 </div>

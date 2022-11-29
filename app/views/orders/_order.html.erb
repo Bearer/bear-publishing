@@ -1,0 +1,31 @@
+<div id="<%= dom_id order %>">
+  <table>
+  <thead>
+  <tr>
+    <th>Item Name</th>
+    <th>Price</th>
+    <th>Qty</th>
+    <th>Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% order.line_items.each do |line_item| %>
+    <tr>
+      <td><%= line_item.book.title %></td>
+      <td>$<%= line_item.book.price %></td>
+      <td><%= line_item.quantity %></td>
+      <td>$<%= line_item.total_price %></td>
+    <tr>
+  <% end %>
+  </tbody>
+  <tr>
+    <td colspan="3">
+
+    </td>
+    <td>
+      $<%= order.total_price %>
+    </td>
+  </tr>
+  </table>
+
+</div>

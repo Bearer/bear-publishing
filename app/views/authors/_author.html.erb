@@ -1,7 +1,5 @@
-<div id="<%= dom_id author %>">
-  <p>
-    <strong>Name:</strong>
-    <%= author.name %>
-  </p>
-
+<div id="<%= dom_id author %>" class="grid-item">
+  <%= image_tag author.image %>
+  <h2><%= link_to author.name, author %></h2>
+  <p>published works: <%= author.books.count %></p>
 </div>

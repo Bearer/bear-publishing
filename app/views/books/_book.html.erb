@@ -1,27 +1,17 @@
-<div id="<%= dom_id book %>">
-  <p>
-    <strong>Title:</strong>
-    <%= book.title %>
-  </p>
-
-  <p>
-    <strong>Author:</strong>
-    <%= book.author_id %>
-  </p>
-
-  <p>
-    <strong>Published at:</strong>
-    <%= book.published_at %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= book.description %>
-  </p>
-
-  <p>
-    <strong>Pages:</strong>
-    <%= book.pages %>
-  </p>
-
+<div id="<%= dom_id book %>" class="grid-item">
+  <%= image_tag book.image %>
+  <div>
+    <h2><%= book.title %></h2>
+    <p><strong>By:</strong> <%= link_to book.author.name, book.author %> </p>
+    <p><strong>Price:</strong> $<%= book.price %> </p>
+    <p><strong>Published:</strong> <%= book.published_at %> </p>
+    <p><strong>Pages:</strong> <%= book.pages %> </p>
+      <p>
+        <%= form_with(url: add_orders_path) do |f| %>
+          <%= f.hidden_field :id, value: book.id %>
+          <%= f.number_field :quantity, value: 0, min: 1, style: "width:50px;" %>
+          <%= f.submit "Add To Cart" %>
+        <% end %>
+    </p>
+  </div>
 </div>

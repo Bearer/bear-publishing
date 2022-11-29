@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+body{
+  padding: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+.grid-item {
+  border: 1px solid black;
+  padding: 20px;
+  margin: 20px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid black;
+	padding: 8px;
+}
+
+thead th {
+
+}

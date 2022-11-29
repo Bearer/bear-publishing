@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Order #<%= @order.id%></h1>
+<p><strong>Placed at:</strong> <%= @order.placed_at %></p>
+<p><strong>Authorized by:</strong> <%= @order.user&.name %>
+<p><strong>Status:</strong> <%= @order.status %></p>
+
+<%= render @order %>
+
+<div>
+  <%= link_to "Back to orders", orders_path %>
+</div>
