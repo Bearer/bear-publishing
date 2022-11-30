@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   include Passwordless::ControllerHelpers
 
   helper_method :current_user
+  helper_method :current_order
+  helper_method :current_organization
 
   private
 

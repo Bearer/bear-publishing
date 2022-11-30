@@ -1,0 +1,5 @@
+<span id="basket_count">
+  <% if current_order.line_items.any? %>
+    (<%= current_order.line_items.count %>)
+  <% end %>
+</span>

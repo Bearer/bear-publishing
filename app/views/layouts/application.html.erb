@@ -22,7 +22,9 @@
       <% end %>
     </div>
     <% if @current_user %>
-      <%= link_to 'Books', books_path %> | <%= link_to 'Authors', authors_path %> | <%= link_to 'Cart', current_orders_path %>
+      <%= link_to 'Books', books_path %> |
+      <%= link_to 'Authors', authors_path %> |
+      <%= link_to 'Cart', current_orders_path %> <%= render partial: "orders/basket_count" %>
     <% end %>
     <%= yield %>
   </body>

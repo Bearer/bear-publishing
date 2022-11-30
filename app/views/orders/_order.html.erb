@@ -9,13 +9,29 @@
   </tr>
   </thead>
   <tbody>
-  <% order.line_items.each do |line_item| %>
-    <tr>
-      <td><%= line_item.book.title %></td>
-      <td>$<%= line_item.book.price %></td>
-      <td><%= line_item.quantity %></td>
-      <td>$<%= line_item.total_price %></td>
-    <tr>
+  <% if order == current_order %>
+    <% order.line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.book.title %></td>
+        <td>$<%= line_item.book.price %></td>
+        <td>
+          <%= form_with(url: add_orders_path) do |f| %>
+            <%= f.hidden_field :id, value: line_item.book.id %>
+            <%= f.number_field :quantity, value: line_item.quantity, style: "width:50px;", onchange: 'this.form.requestSubmit()' %>
+          <% end %>
+        </td>
+        <td>$<%= line_item.total_price %></td>
+      <tr>
+    <% end %>
+  <% else %>
+    <% order.line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.book.title %></td>
+        <td>$<%= line_item.book.price %></td>
+        <td><%= line_item.quantity %></td>
+        <td>$<%= line_item.total_price %></td>
+      <tr>
+    <% end %>
   <% end %>
   </tbody>
   <tr>
@@ -27,5 +43,4 @@
     </td>
   </tr>
   </table>
-
 </div>

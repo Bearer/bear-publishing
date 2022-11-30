@@ -1,3 +1,5 @@
+<% book_in_cart = current_order.line_items.where(book_id: book.id).any?%>
+
 <div id="<%= dom_id book %>" class="grid-item">
   <%= image_tag book.image %>
   <div>
@@ -6,12 +8,19 @@
     <p><strong>Price:</strong> $<%= book.price %> </p>
     <p><strong>Published:</strong> <%= book.published_at %> </p>
     <p><strong>Pages:</strong> <%= book.pages %> </p>
-      <p>
-        <%= form_with(url: add_orders_path) do |f| %>
-          <%= f.hidden_field :id, value: book.id %>
-          <%= f.number_field :quantity, value: 0, min: 1, style: "width:50px;" %>
-          <%= f.submit "Add To Cart" %>
-        <% end %>
+    <p id="<%= dom_id(book, "cart_button")%>">
+      <% if book_in_cart %>
+          <%= form_with(url: add_orders_path) do |f| %>
+            <%= f.hidden_field :id, value: book.id %>
+            <%= f.hidden_field :quantity, value: 0 %>
+            <%= f.submit "Remove From Cart" %>
+          <% end %>
+      <% else %>
+          <%= form_with(url: add_orders_path) do |f| %>
+            <%= f.hidden_field :id, value: book.id %>
+            <%= f.submit "Add To Cart" %>
+          <% end %>
+      <% end %>
     </p>
   </div>
 </div>
