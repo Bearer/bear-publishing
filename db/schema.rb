@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_222646) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_02_105953) do
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -70,6 +70,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_222646) do
     t.index ["authenticatable_type", "authenticatable_id"], name: "authenticatable"
   end
 
+  create_table "payment_accounts", force: :cascade do |t|
+    t.integer "organization_id", null: false
+    t.string "reference_name"
+    t.text "holder_address"
+    t.text "bank_address"
+    t.string "bank_name"
+    t.string "account_number"
+    t.string "sort_code"
+    t.string "holder_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_payment_accounts_on_organization_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -85,5 +99,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_222646) do
   add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "organizations"
   add_foreign_key "orders", "users"
+  add_foreign_key "payment_accounts", "organizations"
   add_foreign_key "users", "organizations"
 end

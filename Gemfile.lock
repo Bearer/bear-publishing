@@ -87,6 +87,7 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    date (3.2.2)
     erubi (1.11.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -120,6 +121,9 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    net-ftp (0.2.0)
+      net-protocol
+      time
     net-imap (0.3.1)
       net-protocol
     net-pop (0.1.2)
@@ -194,6 +198,8 @@ GEM
     stimulus-rails (1.2.0)
       railties (>= 6.0.0)
     thor (1.2.1)
+    time (0.2.0)
+      date
     timeout (0.3.0)
     turbo-rails (1.3.2)
       actionpack (>= 6.0.0)
@@ -230,6 +236,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener
+  net-ftp
   passwordless (~> 0.11.0)
   pry-byebug
   puma (~> 5.0)

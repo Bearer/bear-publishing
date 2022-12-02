@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :payment_accounts
+  get '/organization' => "organization#index"
   resources :orders do
     collection do
       get 'current'

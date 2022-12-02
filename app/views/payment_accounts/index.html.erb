@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Payment accounts</h1>
+
+<div id="orders">
+  <table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Bank</th>
+    <th>Account Holder</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @payment_accounts.each do |payment_account| %>
+    <tr>
+      <td><%= payment_account.reference_name %></td>
+      <td><%= payment_account.bank_name %></td>
+      <td><%= payment_account.holder_name %></td>
+      <td><%= link_to "Show", payment_account %></td>
+    <tr>
+  <% end %>
+  </tbody>
+  </table>
+</div>
+<p>
+<%= link_to "New payment account", new_payment_account_path %>
+</p>
