@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_organization.orders.not_pending
+    @orders = current_organization.orders.not_pending.order(placed_at: :desc)
   end
 
   def add
@@ -69,5 +69,46 @@ class OrdersController < ApplicationController
     end
   end
 
+  def checkout
+    order = current_order
+    order.payment_account = current_organization.payment_accounts.find(params[:payment_account_id])
+    order.status = :placed
+    order.placed_at = Time.current
+
+    if order.save
+      session[:current_order_id]
+      flash[:notice] = "Order Placed."
+
+      Analytics.track(
+        user_id: current_user.id,
+        event: 'placed_order',
+        properties: {
+          order_id: order.id,
+          total: order.total_price
+        }
+      )
+
+      send_sales_webhook
+
+      redirect_to orders_path
+    end
+  end
+
   private
+
+
+  def send_sales_webhook
+    begin
+      HTTParty.post(
+        "http://webhook.example.com/sales_notification",
+        body: {
+          email: current_user.email,
+          order_id: order.id,
+          total: order.total_price
+        }
+      )
+    rescue => e
+      Rails.logger.info("could not send sales webhook")
+    end
+  end
 end

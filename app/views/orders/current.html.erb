@@ -1,7 +1,37 @@
 <h1>Current order</h1>
-<%= render @order %>
 
-<br>
+<% if current_order.empty? %>
+  <h2>Cart is empty</h2>
+
+<% else %>
+  <%= render @order %>
+  <br>
+
+
+  <%= form_with(url: checkout_orders_path, turbo: false) do |form| %>
+    <% if @order.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@order.errors.count, "error") %></h2>
+
+        <ul>
+          <% @order.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :payment_account_id %>
+      <%= form.select :payment_account_id,
+                      current_organization.payment_accounts.pluck(:reference_name,:id),
+                      include_blank: "-"
+                       %>
+      <%= form.submit "Place Order" %>
+    </div>
+  <% end %>
+  <br/>
+<% end %>
 
 <div>
   <%= link_to "Back to books", books_path %>
