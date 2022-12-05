@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
 
   def log_user
     Rails.logger.info("current user: #{current_user.email}")
+
     Analytics.identify(
       user_id: current_user.id,
       traits: {

@@ -75,3 +75,4 @@ gem "passwordless", "~> 0.11.0"
 gem "net-ftp"
 gem 'analytics-ruby', '~> 2.4.0', :require => 'segment/analytics'
 gem "httparty"
+gem 'jwt'
