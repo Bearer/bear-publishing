@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    analytics-ruby (2.4.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.15.0)
@@ -228,6 +229,7 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
+  analytics-ruby (~> 2.4.0)
   bootsnap
   byebug
   capybara

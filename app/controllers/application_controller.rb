@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def current_order
     return unless current_user
     current_user.organization.orders.pending.find_by(id: session[:current_order_id]) ||
-    current_organization.orders.new
+    current_organization.orders.new(user: current_user)
   end
 
   def current_organization
@@ -23,9 +23,25 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user!
-    Rails.logger.info("current user: #{current_user.email}") if current_user
+    log_user if current_user
     return if current_user
 
     redirect_to "/sign_in", flash: { error: 'You must log in' }
+  end
+
+  private
+
+  def log_user
+    Rails.logger.info("current user: #{current_user.email}")
+    Analytics.identify(
+      user_id: current_user.id,
+      traits: {
+        email: "#{ current_user.email }",
+        organization_id: current_user.organization.id
+      },
+      context: {
+        ip: request.ip
+      }
+    )
   end
 end
