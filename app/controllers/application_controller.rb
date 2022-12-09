@@ -36,6 +36,8 @@ class ApplicationController < ActionController::Base
 
     cookies[:publisher_user] = current_user.email
 
+    Sentry.set_user(email: current_user.email)
+
     Analytics.identify(
       user_id: current_user.id,
       traits: {

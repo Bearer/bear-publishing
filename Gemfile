@@ -76,3 +76,5 @@ gem "net-ftp"
 gem 'analytics-ruby', '~> 2.4.0', :require => 'segment/analytics'
 gem "httparty"
 gem 'jwt'
+gem "sentry-ruby"
+gem "sentry-rails"
