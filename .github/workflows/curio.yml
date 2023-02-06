@@ -1,6 +1,7 @@
 name: Curio
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -22,6 +23,6 @@ jobs:
         with:
           script: |
             // github does not support multiline outputs so report is encoded
-            const report = decodeURIComponent(`${{ steps.report.outputs.policy_breaches }}`);
+            const report = decodeURIComponent(`${{ steps.report.outputs.rule_breaches }}`);
             const passed = `${{ steps.report.outputs.exit_code }}` == "0";
             if(!passed){ core.setFailed(report); }
