@@ -1,6 +1,6 @@
 # README
 
-This example application is not meant for production. It demonstrates various data security flaws, and is intended for use with [Curio](https://curio.sh).
+This example application is not meant for production. It demonstrates various data security flaws, and is intended for use with [Bearer](https://github.com/Bearer/bearer).
 
 We have tried to keep the app somewhat "true to life" and as such you can boot and explore the app if you wish
 
