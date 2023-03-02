@@ -33,8 +33,10 @@ class MarketingExport
   def upload_csv(file)
     Net::FTP.open(
       'marketing.example.com',
-      'marketing',
-      'password123'
+      {
+        username: 'marketing',
+        password: 'password123'
+      }
       ) do |ftp|
       ftp.passive = true
       ftp.putbinaryfile(file)
