@@ -19,7 +19,7 @@ jobs:
         id: report
         uses: bearer/bearer-action@main
         with:
-          config-file: '../../bearer.yml'
+          config-file: './bearer.yml'
       - id: summary
         name: Display Summary
         uses: actions/github-script@v6
