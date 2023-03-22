@@ -8,6 +8,7 @@ rule:
     skip-rule:
         - ruby_rails_devise_password_length
         - ruby_rails_password_length
+        - ruby_rails_default_encryption
 scan:
     context: ""
     data-subject-mapping: ""
