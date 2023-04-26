@@ -17,6 +17,8 @@ jobs:
       - name: Run Report
         id: report
         uses: bearer/bearer-action@feat/allow-version-specification
+        with:
+          version: "1.3.1"
       - id: summary
         name: Display Summary
         uses: actions/github-script@v6
