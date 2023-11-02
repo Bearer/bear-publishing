@@ -18,10 +18,6 @@ bearer_mr_check:
   stage: reports
   only:
     - merge_requests
-  variables:
-    SHA: $CI_COMMIT_SHA
-    CURRENT_BRANCH: $CI_COMMIT_REF_NAME
-    DEFAULT_BRANCH: $CI_DEFAULT_BRANCH
   script:
     - curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b /usr/local/bin
     - curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b /usr/local/bin
