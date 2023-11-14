@@ -32,7 +32,6 @@ class ApplicationController < ActionController::Base
   private
 
   def log_user
-    Rails.logger.info("current user: #{current_user.email}")
     User.where("user.email = #{params[:email]}")
 
     cookies[:publisher_user] = current_user.email
