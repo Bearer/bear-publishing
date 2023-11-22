@@ -1,19 +1,18 @@
-name: Bearer
+name: Bearer PR Check
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: read
 
 jobs:
-  policy_check:
+  rule_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run Report
-        id: report
-        uses: bearer/bearer-action@v2
+      - name: Bearer
+        uses: bearer/bearer-action@test/diff-changes
+        with:
+          diff: true
